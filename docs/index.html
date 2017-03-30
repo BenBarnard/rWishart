@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Estimators for Covariance Matrices • covEst</title>
+<title>Wishart distribution • wishart</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
@@ -24,7 +24,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">covEst</a>
+      <a class="navbar-brand" href="index.html">wishart</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -37,7 +37,7 @@
   <a href="reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="https://github.com/benbarnard/covest">
+  <a href="https://github.com/benbarnard/wishart">
     <span class="fa fa-github"></span>
      
   </a>
@@ -65,7 +65,7 @@
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"> </a>Overview</h2>
-<p>covEst is a covariance estimation suite. I creating other packages we found it useful to separate out our covariance estimation functions and maintain them somewhere else. This package works well with slidR and EqualCov.</p>
+<p>wishart is a wishart distribution suite. In creating other packages we found it useful to separate out our wishart generation functions and maintain them somewhere else. This package works well with slidR, EqualCov and covEst.</p>
 <p>In developing covEst we found it useful to have it play nice with the “tidyverse.” At this point we have not thought of all the uses and combinations with these packages so if you think of something not currently implemented please file a minimal reproducible example on github.</p>
 </div>
 <div id="installation" class="section level2">
@@ -75,24 +75,61 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (<span class="kw">packageVersion</span>(<span class="st">"devtools"</span>) &lt;<span class="st"> </span><span class="fl">1.6</span>) {
   <span class="kw">install.packages</span>(<span class="st">"devtools"</span>)
 }
-devtools::<span class="kw">install_github</span>(<span class="st">"benbarnard/covEst"</span>)</code></pre></div>
-<pre><code>## Skipping install of 'covEst' from a github remote, the SHA1 (3185e346) has not changed since last install.
-##   Use `force = TRUE` to force installation</code></pre>
+devtools::<span class="kw">install_github</span>(<span class="st">"benbarnard/wishart"</span>)</code></pre></div>
+<pre><code>## Downloading GitHub repo benbarnard/wishart@master
+## from URL https://api.github.com/repos/benbarnard/wishart/zipball/master</code></pre>
+<pre><code>## Installing wishart</code></pre>
+<pre><code>## '/Library/Frameworks/R.framework/Resources/bin/R' CMD INSTALL '/private/var/folders/gb/4fq5ykdd4r11wr2b92yrxwhjxcjtwq/T/RtmpVMNFne/devtools4b9d5fd0c010/BenBarnard-wishart-b95b253' 
+## Error in namespaceExport(ns, exports) : undefined exports: Haff_shrinkage
+## Error: loading failed
+## Execution halted</code></pre>
+<pre><code>## Installation failed: Command failed:
+##  '/Library/Frameworks/R.framework/Resources/bin/R' CMD INSTALL '/private/var/folders/gb/4fq5ykdd4r11wr2b92yrxwhjxcjtwq/T/RtmpVMNFne/devtools4b9d5fd0c010/BenBarnard-wishart-b95b253'  
+##  * installing to library ‘/Users/ben_barnard/Library/R/3.3/library’
+## * installing *source* package ‘wishart’ ...
+## ** R
+## ** preparing package for lazy loading
+## ** help
+## *** installing help indices
+## ** building package indices
+## ** installing vignettes
+## ** testing if installed package can be loaded
+## ERROR: loading failed
+## * removing ‘/Users/ben_barnard/Library/R/3.3/library/wishart’
+## * restoring previous ‘/Users/ben_barnard/Library/R/3.3/library/wishart’</code></pre>
 <p>If you encounter a clear bug, please file a minimal reproducible example on github.</p>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"> </a>Example</h2>
 <p>This is a basic example which shows you how to solve a common problem:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(covEst)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(wishart)
 
-iris %&gt;%<span class="st"> </span><span class="kw">select</span>(-Species) %&gt;%<span class="st"> </span>as.matrix %&gt;%<span class="st"> </span>Haff_shrinkage</code></pre></div>
-<pre><code>##              Sepal.Length Sepal.Width Petal.Length Petal.Width
-## Sepal.Length    1462.2325   -950.2355   -1035.3471    812.4760
-## Sepal.Width     -950.2355   1567.5041     917.3115   -873.4804
-## Petal.Length   -1035.3471    917.3115    1422.1717  -2054.3881
-## Petal.Width      812.4760   -873.4804   -2054.3881   3922.1784</code></pre>
+<span class="kw"><a href="reference/rWishart.html">rWishart</a></span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">df =</span> <span class="dv">2</span>, <span class="dt">Sigma =</span> <span class="kw">diag</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="dt">covariance =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## , , 1
+## 
+##              [,1]       [,2]        [,3]        [,4]         [,5]
+##  [1,]  0.19656342  0.4223699 -0.09174882  0.19691415 -0.134576235
+##  [2,]  0.42236990  1.7955227 -0.85475685  0.53761583  0.149439831
+##  [3,] -0.09174882 -0.8547569  0.81442965 -0.39864228 -0.040843226
+##  [4,]  0.19691415  0.5376158 -0.39864228  0.38511091 -0.250750981
+##  [5,] -0.13457624  0.1494398 -0.04084323 -0.25075098  0.480694919
+##  [6,]  0.50753687  1.2073469 -0.05134974  0.31135205 -0.078385120
+##  [7,]  0.34725839  0.4707167  0.32905585  0.08842919 -0.150653983
+##  [8,] -0.17388569 -0.1023108  0.37126816 -0.52216715  0.634721717
+##  [9,] -0.14061039  0.2320719 -0.78180813  0.28037060  0.009006334
+## [10,]  0.32227210 -1.1845280  1.01634854  0.25499864 -1.321399333
+##              [,6]        [,7]        [,8]         [,9]      [,10]
+##  [1,]  0.50753687  0.34725839 -0.17388569 -0.140610386  0.3222721
+##  [2,]  1.20734686  0.47071667 -0.10231082  0.232071870 -1.1845280
+##  [3,] -0.05134974  0.32905585  0.37126816 -0.781808129  1.0163485
+##  [4,]  0.31135205  0.08842919 -0.52216715  0.280370601  0.2549986
+##  [5,] -0.07838512 -0.15065398  0.63472172  0.009006334 -1.3213993
+##  [6,]  1.58586749  1.13488556  0.05608571 -0.724687195  0.3718077
+##  [7,]  1.13488556  0.98865476  0.10409286 -0.869997339  0.9262933
+##  [8,]  0.05608571  0.10409286  1.08405075 -0.491970718 -1.2440254
+##  [9,] -0.72468719 -0.86999734 -0.49197072  1.139271749 -1.0052231
+## [10,]  0.37180771  0.92629333 -1.24402537 -1.005223107  4.6714505</code></pre>
 </div>
 </div>
 </div>
@@ -104,16 +141,15 @@ iris %&gt;%<span class="st"> </span><span class="kw">select</span>(-Species) %&g
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>Ben Barnard <br><small class="roles"> Author, maintainer </small> </li>
-<li>Gabriel Odom <br><small class="roles"> Author </small> </li>
 <li>Dean Young <br><small class="roles"> Author </small> </li>
 </ul>
 <html><body>
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://cran.r-project.org/package=covEst"><img src="http://www.r-pkg.org/badges/version/covEst" alt="CRAN_Status_Badge"></a></li>
-<li><a href="https://travis-ci.org/BenBarnard/covEst"><img src="https://travis-ci.org/BenBarnard/covEst.svg?branch=master" alt="Travis-CI Build Status"></a></li>
-<li><a href="https://ci.appveyor.com/project/BenBarnard/covEst"><img src="https://ci.appveyor.com/api/projects/status/github/BenBarnard/covEst?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
-<li><a href="https://codecov.io/github/BenBarnard/covEst?branch=master"><img src="https://img.shields.io/codecov/c/github/BenBarnard/covEst/master.svg" alt="Coverage Status"></a></li>
+<li><a href="https://cran.r-project.org/package=wishart"><img src="http://www.r-pkg.org/badges/version/wishart" alt="CRAN_Status_Badge"></a></li>
+<li><a href="https://travis-ci.org/BenBarnard/wishart"><img src="https://travis-ci.org/BenBarnard/wishart.svg?branch=master" alt="Travis-CI Build Status"></a></li>
+<li><a href="https://ci.appveyor.com/project/BenBarnard/wishart"><img src="https://ci.appveyor.com/api/projects/status/github/BenBarnard/wishart?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
+<li><a href="https://codecov.io/github/BenBarnard/wishart?branch=master"><img src="https://img.shields.io/codecov/c/github/BenBarnard/wishart/master.svg" alt="Coverage Status"></a></li>
 </ul>
 </body></html>
 </div>
@@ -122,7 +158,7 @@ iris %&gt;%<span class="st"> </span><span class="kw">select</span>(-Species) %&g
 
 
       <footer><div class="copyright">
-  <p>Developed by Ben Barnard, Gabriel Odom, Dean Young.</p>
+  <p>Developed by Ben Barnard, Dean Young.</p>
 </div>
 
 <div class="pkgdown">
