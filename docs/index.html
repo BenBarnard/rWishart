@@ -58,9 +58,9 @@
     
     
 <div class="contents">
-<div id="covest" class="section level1">
+<div id="wishart" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#covest" class="anchor"> </a>covEst</h1></div>
+<a href="#wishart" class="anchor"> </a>wishart</h1></div>
 
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
@@ -76,27 +76,8 @@
   <span class="kw">install.packages</span>(<span class="st">"devtools"</span>)
 }
 devtools::<span class="kw">install_github</span>(<span class="st">"benbarnard/wishart"</span>)</code></pre></div>
-<pre><code>## Downloading GitHub repo benbarnard/wishart@master
-## from URL https://api.github.com/repos/benbarnard/wishart/zipball/master</code></pre>
-<pre><code>## Installing wishart</code></pre>
-<pre><code>## '/Library/Frameworks/R.framework/Resources/bin/R' CMD INSTALL '/private/var/folders/gb/4fq5ykdd4r11wr2b92yrxwhjxcjtwq/T/RtmpVMNFne/devtools4b9d5fd0c010/BenBarnard-wishart-b95b253' 
-## Error in namespaceExport(ns, exports) : undefined exports: Haff_shrinkage
-## Error: loading failed
-## Execution halted</code></pre>
-<pre><code>## Installation failed: Command failed:
-##  '/Library/Frameworks/R.framework/Resources/bin/R' CMD INSTALL '/private/var/folders/gb/4fq5ykdd4r11wr2b92yrxwhjxcjtwq/T/RtmpVMNFne/devtools4b9d5fd0c010/BenBarnard-wishart-b95b253'  
-##  * installing to library ‘/Users/ben_barnard/Library/R/3.3/library’
-## * installing *source* package ‘wishart’ ...
-## ** R
-## ** preparing package for lazy loading
-## ** help
-## *** installing help indices
-## ** building package indices
-## ** installing vignettes
-## ** testing if installed package can be loaded
-## ERROR: loading failed
-## * removing ‘/Users/ben_barnard/Library/R/3.3/library/wishart’
-## * restoring previous ‘/Users/ben_barnard/Library/R/3.3/library/wishart’</code></pre>
+<pre><code>## Skipping install of 'wishart' from a github remote, the SHA1 (a5066813) has not changed since last install.
+##   Use `force = TRUE` to force installation</code></pre>
 <p>If you encounter a clear bug, please file a minimal reproducible example on github.</p>
 </div>
 <div id="example" class="section level2">
@@ -108,28 +89,28 @@ devtools::<span class="kw">install_github</span>(<span class="st">"benbarnard/wi
 <span class="kw"><a href="reference/rWishart.html">rWishart</a></span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">df =</span> <span class="dv">2</span>, <span class="dt">Sigma =</span> <span class="kw">diag</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="dt">covariance =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>## , , 1
 ## 
-##              [,1]       [,2]        [,3]        [,4]         [,5]
-##  [1,]  0.19656342  0.4223699 -0.09174882  0.19691415 -0.134576235
-##  [2,]  0.42236990  1.7955227 -0.85475685  0.53761583  0.149439831
-##  [3,] -0.09174882 -0.8547569  0.81442965 -0.39864228 -0.040843226
-##  [4,]  0.19691415  0.5376158 -0.39864228  0.38511091 -0.250750981
-##  [5,] -0.13457624  0.1494398 -0.04084323 -0.25075098  0.480694919
-##  [6,]  0.50753687  1.2073469 -0.05134974  0.31135205 -0.078385120
-##  [7,]  0.34725839  0.4707167  0.32905585  0.08842919 -0.150653983
-##  [8,] -0.17388569 -0.1023108  0.37126816 -0.52216715  0.634721717
-##  [9,] -0.14061039  0.2320719 -0.78180813  0.28037060  0.009006334
-## [10,]  0.32227210 -1.1845280  1.01634854  0.25499864 -1.321399333
-##              [,6]        [,7]        [,8]         [,9]      [,10]
-##  [1,]  0.50753687  0.34725839 -0.17388569 -0.140610386  0.3222721
-##  [2,]  1.20734686  0.47071667 -0.10231082  0.232071870 -1.1845280
-##  [3,] -0.05134974  0.32905585  0.37126816 -0.781808129  1.0163485
-##  [4,]  0.31135205  0.08842919 -0.52216715  0.280370601  0.2549986
-##  [5,] -0.07838512 -0.15065398  0.63472172  0.009006334 -1.3213993
-##  [6,]  1.58586749  1.13488556  0.05608571 -0.724687195  0.3718077
-##  [7,]  1.13488556  0.98865476  0.10409286 -0.869997339  0.9262933
-##  [8,]  0.05608571  0.10409286  1.08405075 -0.491970718 -1.2440254
-##  [9,] -0.72468719 -0.86999734 -0.49197072  1.139271749 -1.0052231
-## [10,]  0.37180771  0.92629333 -1.24402537 -1.005223107  4.6714505</code></pre>
+##              [,1]       [,2]        [,3]       [,4]       [,5]        [,6]
+##  [1,]  2.93817297 -0.6296893 -0.02358355  1.2906886 -1.8813715 -0.18587050
+##  [2,] -0.62968931  1.7063242  0.23230316 -0.6081716 -0.6883964  0.48246426
+##  [3,] -0.02358355  0.2323032  0.25990796  0.3330326 -0.2414067  0.38306002
+##  [4,]  1.29068864 -0.6081716  0.33303262  1.3120328 -0.7662932  0.37276472
+##  [5,] -1.88137149 -0.6883964 -0.24140670 -0.7662932  2.0058832 -0.32655114
+##  [6,] -0.18587050  0.4824643  0.38306002  0.3727647 -0.3265511  0.58096157
+##  [7,] -1.40985418 -0.6024845 -0.04128881 -0.2935085  1.4971755 -0.05613642
+##  [8,] -0.41891475 -0.5033942 -0.30922287 -0.4501137  0.7789241 -0.45806850
+##  [9,]  0.10745144  0.6232596  0.39519271  0.4328273 -0.6493405  0.59882384
+## [10,]  0.71450293 -1.6873824 -0.34100854  0.4419854  0.6576094 -0.63610349
+##              [,7]       [,8]       [,9]      [,10]
+##  [1,] -1.40985418 -0.4189148  0.1074514  0.7145029
+##  [2,] -0.60248447 -0.5033942  0.6232596 -1.6873824
+##  [3,] -0.04128881 -0.3092229  0.3951927 -0.3410085
+##  [4,] -0.29350847 -0.4501137  0.4328273  0.4419854
+##  [5,]  1.49717548  0.7789241 -0.6493405  0.6576094
+##  [6,] -0.05613642 -0.4580685  0.5988238 -0.6361035
+##  [7,]  1.22427190  0.4642970 -0.3192897  0.5013197
+##  [8,]  0.46429698  0.5103919 -0.5618056  0.5906563
+##  [9,] -0.31928972 -0.5618056  0.6733512 -0.7561405
+## [10,]  0.50131967  0.5906563 -0.7561405  1.7284445</code></pre>
 </div>
 </div>
 </div>
