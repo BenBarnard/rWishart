@@ -1,5 +1,5 @@
-Package: wishart
-Title: Wishart distribution
+Package: rWishart
+Title: Random Wishart Generation
 Version: 0.0.0.9000
 Authors@R: c(person("Ben", "Barnard", email = "ben_barnard@baylor.edu", role = c("aut", "cre")),
              person("Dean", "Young", role = c("aut")))

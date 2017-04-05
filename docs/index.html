@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wishart distribution • wishart</title>
+<title>Random Wishart Generation • rWishart</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
@@ -24,12 +24,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">wishart</a>
+      <a class="navbar-brand" href="index.html">rWishart</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="http://www.bearstatistics.com">@ bearstatistics.com</a>
+  <a href="https://www.bearstatistics.com">@ bearstatistics.com</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -37,7 +37,7 @@
   <a href="reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="https://github.com/benbarnard/wishart">
+  <a href="https://github.com/benbarnard/rwishart">
     <span class="fa fa-github"></span>
      
   </a>
@@ -65,7 +65,7 @@
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"> </a>Overview</h2>
-<p>wishart is a wishart distribution suite. In creating other packages we found it useful to separate out our wishart generation functions and maintain them somewhere else. This package works well with slidR, EqualCov and covEst.</p>
+<p>rWishart is a wishart distribution suite. In creating other packages we found it useful to separate out our wishart generation functions and maintain them somewhere else. This package works well with slidR, EqualCov and covEst.</p>
 <p>In developing covEst we found it useful to have it play nice with the “tidyverse.” At this point we have not thought of all the uses and combinations with these packages so if you think of something not currently implemented please file a minimal reproducible example on github.</p>
 </div>
 <div id="installation" class="section level2">
@@ -75,8 +75,8 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (<span class="kw">packageVersion</span>(<span class="st">"devtools"</span>) &lt;<span class="st"> </span><span class="fl">1.6</span>) {
   <span class="kw">install.packages</span>(<span class="st">"devtools"</span>)
 }
-devtools::<span class="kw">install_github</span>(<span class="st">"benbarnard/wishart"</span>)</code></pre></div>
-<pre><code>## Skipping install of 'wishart' from a github remote, the SHA1 (2ea13628) has not changed since last install.
+devtools::<span class="kw">install_github</span>(<span class="st">"benbarnard/rWishart"</span>)</code></pre></div>
+<pre><code>## Skipping install of 'wishart' from a github remote, the SHA1 (606908a9) has not changed since last install.
 ##   Use `force = TRUE` to force installation</code></pre>
 <p>If you encounter a clear bug, please file a minimal reproducible example on github.</p>
 </div>
@@ -84,33 +84,33 @@ devtools::<span class="kw">install_github</span>(<span class="st">"benbarnard/wi
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"> </a>Example</h2>
 <p>This is a basic example which shows you how to solve a common problem:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(wishart)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rWishart)
 
 <span class="kw"><a href="reference/rWishart.html">rWishart</a></span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">df =</span> <span class="dv">2</span>, <span class="dt">Sigma =</span> <span class="kw">diag</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="dt">covariance =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>## , , 1
 ## 
-##              [,1]        [,2]        [,3]        [,4]        [,5]
-##  [1,]  0.40186348  0.04740059  0.67836928  0.18672365  0.40665558
-##  [2,]  0.04740059  0.37257683  0.80884307 -0.21482824  0.76221103
-##  [3,]  0.67836928  0.80884307  2.88789434  0.44700679  1.97133868
-##  [4,]  0.18672365 -0.21482824  0.44700679  1.46753975 -0.54444336
-##  [5,]  0.40665558  0.76221103  1.97133868 -0.54444336  1.86204047
-##  [6,] -0.11057988  0.37431825  0.71829375 -0.02475098  0.58063007
-##  [7,] -0.06115229  0.09512690 -0.90013267 -2.13384488  0.58974526
-##  [8,] -0.79965466  0.22451975 -1.01997806 -1.19583992 -0.05142884
-##  [9,]  0.08552906 -0.16985324  0.01405119  0.61881478 -0.36636760
-## [10,] -0.79714030 -0.20394849 -1.80193347 -0.78475369 -0.91291650
-##               [,6]        [,7]        [,8]        [,9]        [,10]
-##  [1,] -0.110579878 -0.06115229 -0.79965466  0.08552906 -0.797140299
-##  [2,]  0.374318247  0.09512690  0.22451975 -0.16985324 -0.203948488
-##  [3,]  0.718293755 -0.90013267 -1.01997806  0.01405119 -1.801933474
-##  [4,] -0.024750979 -2.13384488 -1.19583992  0.61881478 -0.784753690
-##  [5,]  0.580630069  0.58974526 -0.05142884 -0.36636760 -0.912916498
-##  [6,]  0.501617657 -0.33459534  0.41724152 -0.10917298 -0.006014149
-##  [7,] -0.334595339  3.42494696  1.23784194 -0.83206774  0.896677724
-##  [8,]  0.417241523  1.23784194  2.17976074 -0.55971071  1.735152928
-##  [9,] -0.109172982 -0.83206774 -0.55971071  0.28096707 -0.298726829
-## [10,] -0.006014149  0.89667772  1.73515293 -0.29872683  1.805952187</code></pre>
+##             [,1]       [,2]       [,3]        [,4]       [,5]       [,6]
+##  [1,]  1.3987549 -1.6120366  1.9619440  0.54046991 -0.5416347 -0.7517946
+##  [2,] -1.6120366  1.8601872 -2.2944750 -0.62261996  0.5627592  0.8805261
+##  [3,]  1.9619440 -2.2944750  5.2210944  1.38661049  1.4736212 -1.6840623
+##  [4,]  0.5404699 -0.6226200  1.3866105  0.40924225  0.2148277 -0.4249455
+##  [5,] -0.5416347  0.5627592  1.4736212  0.21482768  2.7454700 -0.3704678
+##  [6,] -0.7517946  0.8805261 -1.6840623 -0.42494555 -0.3704678  0.5810561
+##  [7,] -2.1155751  2.4664887 -6.0630798 -1.66781290 -1.7580013  1.8865646
+##  [8,]  1.8167077 -2.1444981  3.2580174  0.69253794  0.6176587 -1.2787635
+##  [9,]  0.3561503 -0.4295517  0.5709418  0.07209451  0.2256195 -0.2630429
+## [10,] -0.4231130  0.4266527  0.3122401 -0.15790295  1.7866223 -0.1471025
+##             [,7]       [,8]        [,9]      [,10]
+##  [1,] -2.1155751  1.8167077  0.35615035 -0.4231130
+##  [2,]  2.4664887 -2.1444981 -0.42955166  0.4266527
+##  [3,] -6.0630798  3.2580174  0.57094177  0.3122401
+##  [4,] -1.6678129  0.6925379  0.07209451 -0.1579029
+##  [5,] -1.7580013  0.6176587  0.22561952  1.7866223
+##  [6,]  1.8865646 -1.2787635 -0.26304290 -0.1471025
+##  [7,]  7.1771329 -3.3443024 -0.49903147 -0.1484421
+##  [8,] -3.3443024  3.4578362  0.87675353  0.7689731
+##  [9,] -0.4990315  0.8767535  0.26604578  0.3842736
+## [10,] -0.1484421  0.7689731  0.38427358  1.7123098</code></pre>
 </div>
 </div>
 </div>
@@ -122,16 +122,16 @@ devtools::<span class="kw">install_github</span>(<span class="st">"benbarnard/wi
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>
-<a href="http://benbarnard.bearstatistics.com">Ben Barnard</a> <br><small class="roles"> Author, maintainer </small> </li>
+<a href="https://benbarnard.bearstatistics.com">Ben Barnard</a> <br><small class="roles"> Author, maintainer </small> </li>
 <li>Dean Young <br><small class="roles"> Author </small> </li>
 </ul>
 <html><body>
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://cran.r-project.org/package=wishart"><img src="http://www.r-pkg.org/badges/version/wishart" alt="CRAN_Status_Badge"></a></li>
-<li><a href="https://travis-ci.org/BenBarnard/wishart"><img src="https://travis-ci.org/BenBarnard/wishart.svg?branch=master" alt="Travis-CI Build Status"></a></li>
-<li><a href="https://ci.appveyor.com/project/BenBarnard/wishart"><img src="https://ci.appveyor.com/api/projects/status/github/BenBarnard/wishart?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
-<li><a href="https://codecov.io/github/BenBarnard/wishart?branch=master"><img src="https://img.shields.io/codecov/c/github/BenBarnard/wishart/master.svg" alt="Coverage Status"></a></li>
+<li><a href="https://cran.r-project.org/package=rWishart"><img src="http://www.r-pkg.org/badges/version/rWishart" alt="CRAN_Status_Badge"></a></li>
+<li><a href="https://travis-ci.org/BenBarnard/rWishart"><img src="https://travis-ci.org/BenBarnard/rWishart.svg?branch=master" alt="Travis-CI Build Status"></a></li>
+<li><a href="https://ci.appveyor.com/project/BenBarnard/rWishart"><img src="https://ci.appveyor.com/api/projects/status/github/BenBarnard/rWishart?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
+<li><a href="https://codecov.io/github/BenBarnard/rWishart?branch=master"><img src="https://img.shields.io/codecov/c/github/BenBarnard/rWishart/master.svg" alt="Coverage Status"></a></li>
 </ul>
 </body></html>
 </div>
@@ -140,7 +140,7 @@ devtools::<span class="kw">install_github</span>(<span class="st">"benbarnard/wi
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="http://benbarnard.bearstatistics.com">Ben Barnard</a>, Dean Young.</p>
+  <p>Developed by <a href="https://benbarnard.bearstatistics.com">Ben Barnard</a>, Dean Young.</p>
 </div>
 
 <div class="pkgdown">

@@ -1,15 +1,15 @@
 authors:
   Ben Barnard:
-    href: http://benbarnard.bearstatistics.com
+    href: https://benbarnard.bearstatistics.com
 navbar:
-  title: wishart
+  title: rWishart
   type: default
   right:
   - text: "Reference"
     href: reference/index.html
   - icon: fa-github
-    href: https://github.com/benbarnard/wishart
+    href: https://github.com/benbarnard/rwishart
   left:
   - text: "@ bearstatistics.com"
-    href: http://www.bearstatistics.com
+    href: https://www.bearstatistics.com
 
