@@ -13,12 +13,12 @@
 rWishart <- function(n, df, Sigma, covariance = FALSE, simplify = "array"){
   if(df >= ncol(Sigma)){
     ls <- replicate(n,
-                    wishart::WishFunc(df, Sigma, covariance),
+                    rWishart::WishFunc(df, Sigma, covariance),
                     simplify = simplify)
   }else{
     cholesky <- chol(Sigma)
     ls <- replicate(n,
-                    wishart::SingularWishFunc(df, Sigma, cholesky, covariance),
+                    rWishart::SingularWishFunc(df, Sigma, cholesky, covariance),
                     simplify = simplify)
   }
   ls
