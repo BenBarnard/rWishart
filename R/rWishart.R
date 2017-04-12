@@ -1,25 +1,19 @@
 #' Random Wishart Distributed Matrices
 #'
-#' @param n
-#' @param df
-#' @param Sigma
+#' @inheritParams base::replicate
+#' @param df degrees of freedom
+#' @param Sigma Covariance matrix
+#' @param covariance should covariance matrix be generated (X / df)
 #'
-#' @return
+#' @return list or array of random wishart matrices
 #' @export
-#' @importFrom stats rWishart
-#' @importFrom MASS mvrnorm
 #'
-#' @examples
+#' @examples rWishart(2, 5, diag(1, 20))
 rWishart <- function(n, df, Sigma, covariance = FALSE, simplify = "array"){
   if(df >= ncol(Sigma)){
-    ls <- replicate(n,
-                    rWishart::WishFunc(df, Sigma, covariance),
-                    simplify = simplify)
+    ls <- rNonsingularWishart(n, df, Sigma, covariance, simplify)
   }else{
-    cholesky <- chol(Sigma)
-    ls <- replicate(n,
-                    rWishart::SingularWishFunc(df, Sigma, cholesky, covariance),
-                    simplify = simplify)
+    ls <- rPsuedoWishart(n, df, Sigma, covariance, simplify)
   }
   ls
 }
