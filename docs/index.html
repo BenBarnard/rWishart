@@ -60,57 +60,61 @@
 <div class="contents">
 <div id="wishart" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#wishart" class="anchor"> </a>wishart</h1></div>
+<a href="#wishart" class="anchor"></a>wishart</h1></div>
 
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
-<a href="#overview" class="anchor"> </a>Overview</h2>
+<a href="#overview" class="anchor"></a>Overview</h2>
 <p>rWishart is a wishart distribution suite. In creating other packages we found it useful to separate out our wishart generation functions and maintain them somewhere else. This package works well with slidR, EqualCov and covEst.</p>
 <p>In developing covEst we found it useful to have it play nice with the “tidyverse.” At this point we have not thought of all the uses and combinations with these packages so if you think of something not currently implemented please file a minimal reproducible example on github.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#installation" class="anchor"> </a>Installation</h2>
+<a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the latest development version from github with</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (<span class="kw">packageVersion</span>(<span class="st">"devtools"</span>) &lt;<span class="st"> </span><span class="fl">1.6</span>) {
   <span class="kw">install.packages</span>(<span class="st">"devtools"</span>)
 }
 devtools::<span class="kw">install_github</span>(<span class="st">"benbarnard/rWishart"</span>)</code></pre></div>
-<pre><code>## Skipping install of 'wishart' from a github remote, the SHA1 (606908a9) has not changed since last install.
+<pre><code>## Skipping install of 'rWishart' from a github remote, the SHA1 (5b5db89d) has not changed since last install.
 ##   Use `force = TRUE` to force installation</code></pre>
 <p>If you encounter a clear bug, please file a minimal reproducible example on github.</p>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
-<a href="#example" class="anchor"> </a>Example</h2>
+<a href="#example" class="anchor"></a>Example</h2>
 <p>This is a basic example which shows you how to solve a common problem:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rWishart)
-
-<span class="kw"><a href="reference/rWishart.html">rWishart</a></span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">df =</span> <span class="dv">2</span>, <span class="dt">Sigma =</span> <span class="kw">diag</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="dt">covariance =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rWishart)</code></pre></div>
+<pre><code>## 
+## Attaching package: 'rWishart'</code></pre>
+<pre><code>## The following object is masked from 'package:stats':
+## 
+##     rWishart</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/rWishart.html">rWishart</a></span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">df =</span> <span class="dv">2</span>, <span class="dt">Sigma =</span> <span class="kw">diag</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="dt">covariance =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>## , , 1
 ## 
-##             [,1]       [,2]       [,3]        [,4]       [,5]       [,6]
-##  [1,]  1.3987549 -1.6120366  1.9619440  0.54046991 -0.5416347 -0.7517946
-##  [2,] -1.6120366  1.8601872 -2.2944750 -0.62261996  0.5627592  0.8805261
-##  [3,]  1.9619440 -2.2944750  5.2210944  1.38661049  1.4736212 -1.6840623
-##  [4,]  0.5404699 -0.6226200  1.3866105  0.40924225  0.2148277 -0.4249455
-##  [5,] -0.5416347  0.5627592  1.4736212  0.21482768  2.7454700 -0.3704678
-##  [6,] -0.7517946  0.8805261 -1.6840623 -0.42494555 -0.3704678  0.5810561
-##  [7,] -2.1155751  2.4664887 -6.0630798 -1.66781290 -1.7580013  1.8865646
-##  [8,]  1.8167077 -2.1444981  3.2580174  0.69253794  0.6176587 -1.2787635
-##  [9,]  0.3561503 -0.4295517  0.5709418  0.07209451  0.2256195 -0.2630429
-## [10,] -0.4231130  0.4266527  0.3122401 -0.15790295  1.7866223 -0.1471025
-##             [,7]       [,8]        [,9]      [,10]
-##  [1,] -2.1155751  1.8167077  0.35615035 -0.4231130
-##  [2,]  2.4664887 -2.1444981 -0.42955166  0.4266527
-##  [3,] -6.0630798  3.2580174  0.57094177  0.3122401
-##  [4,] -1.6678129  0.6925379  0.07209451 -0.1579029
-##  [5,] -1.7580013  0.6176587  0.22561952  1.7866223
-##  [6,]  1.8865646 -1.2787635 -0.26304290 -0.1471025
-##  [7,]  7.1771329 -3.3443024 -0.49903147 -0.1484421
-##  [8,] -3.3443024  3.4578362  0.87675353  0.7689731
-##  [9,] -0.4990315  0.8767535  0.26604578  0.3842736
-## [10,] -0.1484421  0.7689731  0.38427358  1.7123098</code></pre>
+##              [,1]       [,2]       [,3]       [,4]       [,5]       [,6]
+##  [1,]  0.52642417  0.3676166 -0.3649756 -0.3686519 -0.4192470 -1.0002949
+##  [2,]  0.36761664  0.6147575 -0.2825065  0.4796308 -0.6154987 -1.0048636
+##  [3,] -0.36497557 -0.2825065  0.4070850  0.5226698  0.3983255  0.9084790
+##  [4,] -0.36865192  0.4796308  0.5226698  2.4664133 -0.1943056  0.4778974
+##  [5,] -0.41924700 -0.6154987  0.3983255 -0.1943056  0.6698616  1.1769728
+##  [6,] -1.00029491 -1.0048636  0.9084790  0.4778974  1.1769728  2.4037723
+##  [7,] -0.24653806 -0.2780524  0.5260229  0.6945189  0.4807641  0.9959842
+##  [8,] -0.04075017 -0.8975596  0.3183027 -1.2851039  0.9372937  1.1018308
+##  [9,] -0.24217689 -0.5740635  0.3038682 -0.4407262  0.6149136  0.9385122
+## [10,]  1.15408593  0.2238111 -0.8129499 -2.1296971 -0.4258666 -1.7676300
+##             [,7]        [,8]        [,9]       [,10]
+##  [1,] -0.2465381 -0.04075017 -0.24217689  1.15408593
+##  [2,] -0.2780524 -0.89755965 -0.57406352  0.22381114
+##  [3,]  0.5260229  0.31830274  0.30386824 -0.81294985
+##  [4,]  0.6945189 -1.28510385 -0.44072624 -2.12969709
+##  [5,]  0.4807641  0.93729369  0.61491358 -0.42586662
+##  [6,]  0.9959842  1.10183080  0.93851218 -1.76763002
+##  [7,]  0.9390539  0.78532365  0.47230761 -0.50018857
+##  [8,]  0.7853237  2.44007720  1.15539610  1.23894382
+##  [9,]  0.4723076  1.15539610  0.64158045  0.08765255
+## [10,] -0.5001886  1.23894382  0.08765255  3.49849788</code></pre>
 </div>
 </div>
 </div>
@@ -125,7 +129,6 @@ devtools::<span class="kw">install_github</span>(<span class="st">"benbarnard/rW
 <a href="https://benbarnard.bearstatistics.com">Ben Barnard</a> <br><small class="roles"> Author, maintainer </small> </li>
 <li>Dean Young <br><small class="roles"> Author </small> </li>
 </ul>
-<html><body>
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://cran.r-project.org/package=rWishart"><img src="http://www.r-pkg.org/badges/version/rWishart" alt="CRAN_Status_Badge"></a></li>
@@ -133,7 +136,6 @@ devtools::<span class="kw">install_github</span>(<span class="st">"benbarnard/rW
 <li><a href="https://ci.appveyor.com/project/BenBarnard/rWishart"><img src="https://ci.appveyor.com/api/projects/status/github/BenBarnard/rWishart?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
 <li><a href="https://codecov.io/github/BenBarnard/rWishart?branch=master"><img src="https://img.shields.io/codecov/c/github/BenBarnard/rWishart/master.svg" alt="Coverage Status"></a></li>
 </ul>
-</body></html>
 </div>
 
 </div>
