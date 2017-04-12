@@ -7,8 +7,29 @@
 rWishart(n, df, Sigma, covariance = FALSE, simplify = "array")
 }
 \arguments{
-\item{Sigma}{}
+\item{n}{integer: the number of replications.}
+
+\item{df}{degrees of freedom}
+
+\item{Sigma}{Covariance matrix}
+
+\item{covariance}{should covariance matrix be generated (X / df)}
+
+\item{simplify}{logical or character string; should the result be
+    simplified to a vector, matrix or higher dimensional array if
+    possible?  For \code{sapply} it must be named and not abbreviated.
+    The default value, \code{TRUE}, returns a vector or matrix if appropriate,
+    whereas if \code{simplify = "array"} the result may be an
+    \code{\link{array}} of \dQuote{rank}
+    (\eqn{=}\code{length(dim(.))}) one higher than the result
+    of \code{FUN(X[[i]])}.}
+}
+\value{
+list or array of random wishart matrices
 }
 \description{
 Random Wishart Distributed Matrices
+}
+\examples{
+rWishart(2, 5, diag(1, 20))
 }
