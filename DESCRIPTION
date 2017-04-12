@@ -1,12 +1,13 @@
 Package: rWishart
 Title: Random Wishart Generation
 Version: 0.0.0.9000
-Authors@R: c(person("Ben", "Barnard", email = "ben_barnard@baylor.edu", role = c("aut", "cre")),
+Authors@R: c(person("Ben", "Barnard", email = "ben_barnard@outlook.com", role = c("aut", "cre")),
              person("Dean", "Young", role = c("aut")))
-Description: Covariance estimation functions.
+Maintainer: Ben Barnard <ben_barnard@outlook.com>
+Description: Random Wishart Matrix Generation.
 Imports:
-    lazyeval,
-    MASS
+    MASS,
+    stats
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
