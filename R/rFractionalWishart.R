@@ -30,7 +30,7 @@ FractionalWishart <- function(df, Sigma, covariance = FALSE){
   }
   x <- cholesky %*% t(B) %*% B %*% t(cholesky)
   atr <- attributes(x)
-  attributes(x) <- c(atr, n = df + 1)
+  attributes(x) <- c(atr, df = df)
   if(covariance == TRUE){
     x <- x / df
     class(x) <- c("covariance", "matrix")

@@ -23,7 +23,7 @@ rNonsingularWishart <- function(n, df, Sigma, covariance = FALSE, simplify = "ar
 NonsingularWishart <- function(df, Sigma, covariance = FALSE){
   x <- stats::rWishart(1, df, Sigma)[ , , 1]
   atr <- attributes(x)
-  attributes(x) <- c(atr, n = df + 1)
+  attributes(x) <- c(atr, df = df)
   if(covariance == TRUE){
     x <- x / df
     class(x) <- c("covariance", "matrix")

@@ -28,7 +28,7 @@ SingularWishart <- function(df, Sigma, covariance = FALSE){
                Sigma = Sigma)
   x <- u %*% sqd %*% t(X) %*% X %*% t(u %*% sqd)
   atr <- attributes(x)
-  attributes(x) <- c(atr, n = df + 1)
+  attributes(x) <- c(atr, df = df)
   if(covariance == TRUE){
     x <- x / df
     class(x) <- c("covariance", "matrix")
