@@ -17,6 +17,7 @@ rSingularWishart <- function(n, df, Sigma, covariance = FALSE, simplify = "array
 #' @export
 #' @keywords internal
 #' @importFrom MASS mvrnorm
+#' @importFrom lazyeval f_unwrap
 #' @examples SingularWishart(5, diag(1, 20))
 SingularWishart <- function(df, Sigma, covariance = FALSE){
   singularValueDecomposition <- svd(Sigma)
@@ -28,7 +29,7 @@ SingularWishart <- function(df, Sigma, covariance = FALSE){
                Sigma = Sigma)
   x <- u %*% sqd %*% t(X) %*% X %*% t(u %*% sqd)
   atr <- attributes(x)
-  attributes(x) <- c(atr, df = df)
+  attributes(x) <- c(atr, df = f_unwrap(~ df))
   if(covariance == TRUE){
     x <- x / df
     class(x) <- c("covariance", "matrix")

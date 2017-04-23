@@ -17,6 +17,7 @@ rFractionalWishart <- function(n, df, Sigma, covariance = FALSE, simplify = "arr
 #' @export
 #' @keywords internal
 #' @importFrom MASS mvrnorm
+#' @importFrom lazyeval f_unwrap
 #' @examples FractionalWishart(22.5, diag(1, 20))
 FractionalWishart <- function(df, Sigma, covariance = FALSE){
   if(ncol(Sigma) > df){stop("Cannot produce a Singular Fractional Wishart")}
@@ -30,7 +31,7 @@ FractionalWishart <- function(df, Sigma, covariance = FALSE){
   }
   x <- cholesky %*% t(B) %*% B %*% t(cholesky)
   atr <- attributes(x)
-  attributes(x) <- c(atr, df = df)
+  attributes(x) <- c(atr, df = f_unwrap(~ df))
   if(covariance == TRUE){
     x <- x / df
     class(x) <- c("covariance", "matrix")

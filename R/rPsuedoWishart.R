@@ -17,15 +17,17 @@ rPsuedoWishart <- function(n, df, Sigma, covariance = FALSE, simplify = "array")
 #' @export
 #' @keywords internal
 #' @importFrom MASS mvrnorm
+#' @importFrom lazyeval f_unwrap
 #' @examples PsuedoWishart(5, diag(1, 20))
 PsuedoWishart <- function(df, Sigma, covariance = FALSE){
+  df <- df
   cholesky <- chol(Sigma)
   X <- mvrnorm(n = df + 1,
                mu  = rep(0 , ncol(Sigma)),
                Sigma = Sigma)
   x <- cholesky %*% t(X) %*% X %*% t(cholesky)
   atr <- attributes(x)
-  attributes(x) <- c(atr, df = df)
+  attributes(x) <- c(atr, df = f_unwrap(~ df))
   if(covariance == TRUE){
     x <- x / df
     class(x) <- c("covariance", "matrix")

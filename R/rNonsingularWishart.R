@@ -18,12 +18,13 @@ rNonsingularWishart <- function(n, df, Sigma, covariance = FALSE, simplify = "ar
 #' @export
 #' @keywords internal
 #' @importFrom stats rWishart
+#' @importFrom lazyeval f_unwrap
 #'
 #' @examples NonsingularWishart(20, diag(1,5))
 NonsingularWishart <- function(df, Sigma, covariance = FALSE){
   x <- stats::rWishart(1, df, Sigma)[ , , 1]
   atr <- attributes(x)
-  attributes(x) <- c(atr, df = df)
+  attributes(x) <- c(atr, df = f_unwrap(~ df))
   if(covariance == TRUE){
     x <- x / df
     class(x) <- c("covariance", "matrix")

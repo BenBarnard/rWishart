@@ -1,0 +1,57 @@
+---
+author:
+  - name: Ben Barnard
+    affiliation: Baylor University
+    address: >
+      Department of Statistical Sciences
+      Waco, Tx
+    email: ben_barnard@baylor.edu
+  - name: Dean Young
+    affiliation: Baylor University
+title:
+  formatted: "\\pkg{rWishart}: An R package for random wishart matrices"
+abstract: >
+  The abstract of the article.
+keywords:
+  # at least one keyword must be supplied
+  formatted: [keywords, not capitalized, "\\proglang{Java}"]
+  plain:     [keywords, not capitalized, Java]
+preamble: >
+  \usepackage{amsmath}
+output: rticles::jss_article
+bibliography: [rWishart.bib]
+biblio-style: apalike
+---
+```{r, include = FALSE}
+library(rWishart)
+```
+
+# Introduction
+
+# Random Wishart Matrices
+
+## Psuedo Wishart Matrices
+
+## Singular Wishart Matrices
+
+## Fractional Wishart Matrices
+
+# Overview and Use of the Package
+
+## Covariance Matrix Class
+
+In this section we discuss a new class of matrix object in R. The primary purpose for this object is not really apparent in the rWishart package and we won't see some of the true advantages to the covariance class object till the covEst package release. When a user calls the rWishart function,
+
+```{r}
+S <- rWishart(n = 1, df = 2, Sigma = diag(1, 10), covariance = TRUE, simplify = FALSE)[[1]]
+```
+
+they are given the option to generate sample covariance matrices, $S$, where 
+$$df * S \sim W(df, \boldsymbol{\Sigma}).$$
+In the covariance class matrix we store a new attribute to the matrix object. We store the degrees of freedom as a formula object. The degrees of freedom can be pulled from the covariance matrix class object by using
+
+```{r}
+attributes(S)$df
+```
+
+## Simulation Study
