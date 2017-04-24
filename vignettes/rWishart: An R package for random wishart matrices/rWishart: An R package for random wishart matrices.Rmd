@@ -1,26 +1,10 @@
 ---
-author:
-  - name: Ben Barnard
-    affiliation: Baylor University
-    address: >
-      Department of Statistical Sciences
-      Waco, Tx
-    email: ben_barnard@baylor.edu
-  - name: Dean Young
-    affiliation: Baylor University
-title:
-  formatted: "\\pkg{rWishart}: An R package for random wishart matrices"
-abstract: >
-  The abstract of the article.
-keywords:
-  # at least one keyword must be supplied
-  formatted: [keywords, not capitalized, "\\proglang{Java}"]
-  plain:     [keywords, not capitalized, Java]
-preamble: >
-  \usepackage{amsmath}
-output: rticles::jss_article
+author: "Ben Barnard and Dean Young"
+title: "rWishart: An R package for random wishart matrices"
+output: pdf_document
 bibliography: [rWishart.bib]
 biblio-style: apalike
+
 ---
 ```{r, include = FALSE}
 library(rWishart)
@@ -30,28 +14,75 @@ library(rWishart)
 
 # Random Wishart Matrices
 
+Let $\textbf{X}_{n \times p}$ be a $n$ sample by $p$ dimensional data matrix distributed $MVN(\mu, \Sigma)$. Let us consider the sample covariance matrix
+$$\textbf{S}_i = \frac{1}{n_i - 1}\textbf{X}_i^T \left( \textbf{I}_{n_i} - \frac{1}{n_i} \textbf{J}_{n_i} \right) \textbf{X}_i, \quad i = 1, \ldots, k$$
+where $\textbf{J}_{n_i}$ is an $n_i \times n_i$ matrix of ones. Then, $(n_i - 1) \textbf{S}_i \sim \text{W}\left( \boldsymbol{\Sigma}_i, n_i - 1\right)$, where $\text{W}\left( \boldsymbol{\Sigma}_i, n_i \right)$ is a Wishart distribution with $n_i$ degrees of freedom and covariance matrix $\boldsymbol{\Sigma}_i$ [@chaipitak_test_2013; @johnson_applied_2007; @fujikoshi_multivariate_2011]. 
+
+@odell_numerical_1966 has developed an alorithm to generate $(n_i - 1) \textbf{S}_i \sim \text{W}\left( \boldsymbol{\Sigma}_i, n_i - 1 \right)$ where $n_i - 1  \geq p$.  The @odell_numerical_1966 algorithm uses Bartlett's decomposition. Thus, $\textbf{U} = \textbf{FF}^T \sim \text{W}(n - 1, \textbf{I})$, where 
+$$\textbf{F} = 
+\begin{pmatrix} 
+X_1^{1/2} & 0 & \ldots & 0 \\
+Y_{2, \ 1} & X_2^{1/2} & \ldots & 0 \\
+\vdots & \ddots & \ddots & \vdots \\
+Y_{p, \ 1} & \ldots & Y_{p, \ p - 1} & X_p^{1/2}
+\end{pmatrix}.$$
+
+With $X_i \sim \chi^2(n-i), \ i = 1, \ldots, p$, and $Y_{i, j} \overset{iid}{\sim} N(0,1)$. Let $\boldsymbol{\Sigma} = \textbf{CC}^T$ where $\textbf{C}$ is the lower triangle matrix from the Cholesky decomposition. Then, $\textbf{CUC}^T \sim \text{W}\left( \boldsymbol{\Sigma}_i, n_i - 1 \right).$
+
+
 ## Psuedo Wishart Matrices
+
+In this section we discuss psuedo wishart matrices. @srivastava_singular_2003, @kubokawa_estimation_2008, and @uhlig_singular_1994 defined the singular wishart distribution as a $W(n - 1, \boldsymbol{\Sigma})$ where $n \leq p$, $p$ being the dimension. Since we will define the singular wishart as something else in the next section we will call this the psuedo wishart distribution like @diaz-garcia_wishart_1997. We cannot generate our psuedo wishart matrices by @odell_numerical_1966. Let $X_{n, \ p} \sim MVN(\textbf{0}, \textbf{I}_p)$ where the sample size $n$ is less than our dimension $p$. Then, $\textbf{W} = \textbf{XX}^T \sim W(n, \textbf{I})$ is psuedo wishart. Next, let $\boldsymbol{\Sigma}$ be positive definite then $\boldsymbol{\Sigma} = \textbf{CC}^T$ where $\textbf{C}$ is the lower triangle matrix from the Cholesky decomposition. Then, $\textbf{CWC}^T \sim \text{W}\left(n, \boldsymbol{\Sigma} \right)$ is psuedo wishart. 
 
 ## Singular Wishart Matrices
 
+In this section we discuss singular wishart matrices. We define the singular wishart matrix $W \sim \text{W}(n, \boldsymbol{\Sigma})$ where $\boldsymbol{\Sigma}$ is positive semidefinite where $rk(\boldsymbol{\Sigma}) < p$. The solution to the Cholesky decomposition is no longer unique and most software will give errors or interesting results. Let $X_{n, \ p} \sim MVN(\textbf{0}, \textbf{I}_p)$. Then, $\textbf{W} = \textbf{XX}^T \sim W(n, \textbf{I})$ where $W(n, \textbf{I})$ can be wishart or psuedo wishart. Next, let $\boldsymbol{\Sigma}$ be positive semidefinite then $\boldsymbol{\Sigma} = \textbf{UDU}^T$ is the singular value decomposition. Then, $\textbf{UD}^{1/2}\textbf{W}(\textbf{UD}^{1/2})^T \sim \text{W}\left(n, \boldsymbol{\Sigma} \right)$ is singular wishart.
+
 ## Fractional Wishart Matrices
 
+In this section we discuss fractional wishart matrices. We define the fractional wishart matrix $W \sim \text{W}(df, \boldsymbol{\Sigma})$ where $\boldsymbol{\Sigma}$ is positive definite. Similar to @odell_numerical_1966 we define $\textbf{U} = \textbf{FF}^T \sim \text{W}(n - 1, \textbf{I})$, where 
+$$\textbf{F} = 
+\begin{pmatrix} 
+X_1^{1/2} & 0 & \ldots & 0 \\
+Y_{2, \ 1} & X_2^{1/2} & \ldots & 0 \\
+\vdots & \ddots & \ddots & \vdots \\
+Y_{p, \ 1} & \ldots & Y_{p, \ p - 1} & X_p^{1/2}
+\end{pmatrix}.$$
+With $X_i \sim \text{Gamma}(df - i + 1, \ 1/2), \ i = 1, \ldots, p$, and $Y_{i, j} \overset{iid}{\sim} N(0,1)$. Let $\boldsymbol{\Sigma} = \textbf{CC}^T$ where $\textbf{C}$ is the lower triangle matrix from the Cholesky decomposition. Then, $\textbf{CUC}^T \sim \text{W}\left(df,  \boldsymbol{\Sigma}_i \right).$
+
 # Overview and Use of the Package
+
+In this section we discuss the how users will use the rWishart package. Most users will use one function, \texttt{rWishart()}. The \texttt{rWishart} function is just a wrapper for four other functions, \texttt{rFractionalWishart}, \texttt{rNonsingularWishart}, \texttt{rPsuedoWishart}, and \texttt{rSingularWishart}. The \texttt{rWishart} function decides which of these four functions are needed to create the appropriate random wishart matrix. The \texttt{rNonsingularWishart} function is just a wrapper for the base \texttt{rWishart} function in R. 
+
+Under the hood the wishart functions use the base \texttt{replicate} function and the function calls \texttt{n}, and \texttt{simplify} are passed to \texttt{replicate}. The base functions and the replications in the future will be implemented in a lower level programming language. Currently the base \texttt{rWishart} function uses a lower level language so we do slow down the \texttt{rWishart} function by assigning over the base function. We assign over the base function to increse functionality of \texttt{rWishart}. 
 
 ## Covariance Matrix Class
 
 In this section we discuss a new class of matrix object in R. The primary purpose for this object is not really apparent in the rWishart package and we won't see some of the true advantages to the covariance class object till the covEst package release. When a user calls the rWishart function,
 
-```{r}
-S <- rWishart(n = 1, df = 2, Sigma = diag(1, 10), covariance = TRUE, simplify = FALSE)[[1]]
+```{r rWish}
+S <- rWishart(n = 1, df = 2, Sigma = diag(1, 10), 
+              covariance = TRUE, simplify = FALSE)[[1]]
 ```
 
 they are given the option to generate sample covariance matrices, $S$, where 
 $$df * S \sim W(df, \boldsymbol{\Sigma}).$$
 In the covariance class matrix we store a new attribute to the matrix object. We store the degrees of freedom as a formula object. The degrees of freedom can be pulled from the covariance matrix class object by using
 
-```{r}
-attributes(S)$df
+```{r degfree}
+degreesfreedom <- attributes(S)$df
 ```
+
+and we can evaluate the formula by
+
+```{r evaldf}
+lazyeval::f_eval(degreesfreedom)
+```
+
+from the lazyeval package. Having a covariance class matrix object allows us to create covarince specific methods that can differentiate between needing high-dimensional or normal methods. The covarinance class object also allows us not to confuse multivariate data matrices with our random sample covariance matrices.
+
+## Testing Wishart Matrices
+
+
 
 ## Simulation Study
