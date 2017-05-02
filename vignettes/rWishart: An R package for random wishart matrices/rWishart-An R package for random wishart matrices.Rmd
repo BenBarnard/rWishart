@@ -4,7 +4,6 @@ title: "rWishart: An R package for random wishart matrices"
 output: pdf_document
 bibliography: [rWishart.bib]
 biblio-style: apalike
-
 ---
 ```{r, include = FALSE}
 library(rWishart)
