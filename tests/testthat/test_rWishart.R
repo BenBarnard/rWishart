@@ -21,13 +21,13 @@ test_that("rWishart produces Wishart Matrix", {
       mean(
         replicate(1000, 
                   wishartTest(
-                    rWishart(1, 50, diag(1, 20))[,,1], 
-                    diag(1, 20)
+                    rWishart(1, 5, diag(1, 3))[,,1], 
+                    diag(1, 3)
                   )
         )
       )
     ), 
-    50)
+    5)
 })
 
 test_that("rWishart produces Wishart Matrix", {
