@@ -2,6 +2,7 @@
 #'
 #' @inherit rWishart
 #' @export
+#' 
 #'
 #' @examples rFractionalWishart(2, 22.5, diag(1, 20))
 rFractionalWishart <- function(n, df, Sigma, covariance = FALSE, simplify = "array"){
@@ -17,6 +18,8 @@ rFractionalWishart <- function(n, df, Sigma, covariance = FALSE, simplify = "arr
 #' @export
 #' @keywords internal
 #' @importFrom MASS mvrnorm
+#' @importFrom stats rgamma
+#' @importFrom stats rnorm
 #' @importFrom lazyeval f_unwrap
 #' @examples FractionalWishart(22.5, diag(1, 20))
 FractionalWishart <- function(df, Sigma, covariance = FALSE){
@@ -27,7 +30,7 @@ FractionalWishart <- function(df, Sigma, covariance = FALSE){
     for(j in 1:ncol(Sigma)){
       B[i, j] <- ifelse(j < i, rnorm(1), 0)
     }
-    B[i, i] <- rgamma(1, df - i + 1, scale = 1 / 2)
+    B[i, i] <- rgamma(1, df - i + 1 / 2, scale = 1 / 2)
   }
   x <- cholesky %*% t(B) %*% B %*% t(cholesky)
   atr <- attributes(x)
