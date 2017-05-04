@@ -31,8 +31,6 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-
-
   </head>
 
   <body>
@@ -86,21 +84,14 @@
     <pre><span class='fu'>NonsingularWishart</span>(<span class='no'>df</span>, <span class='no'>Sigma</span>, <span class='kw'>covariance</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>df</th>
-      <td><p>degrees of freedom</p></td>
-    </tr>
-    <tr>
-      <th>Sigma</th>
-      <td><p>Covariance matrix</p></td>
-    </tr>
-    <tr>
-      <th>covariance</th>
-      <td><p>should covariance matrix be generated (X / df)</p></td>
-    </tr>
-    </table>
+    <dl class="dl-horizontal">
+      <dt>df</dt>
+      <dd>degrees of freedom</dd>
+      <dt>Sigma</dt>
+      <dd>Covariance matrix</dd>
+      <dt>covariance</dt>
+      <dd>should covariance matrix be generated (X / df)</dd>
+    </dl>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
@@ -108,14 +99,15 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>NonsingularWishart</span>(<span class='fl'>20</span>, <span class='fu'>diag</span>(<span class='fl'>1</span>,<span class='fl'>5</span>))</div><div class='output co'>#&gt;             [,1]        [,2]       [,3]       [,4]        [,5]
-#&gt; [1,] 11.34961307 -0.01876921   3.868905 -5.1367391  -5.4946707
-#&gt; [2,] -0.01876921 12.47006254  -6.439770  6.9631113   1.8186165
-#&gt; [3,]  3.86890531 -6.43977041  25.455277 -3.2256814 -11.3067901
-#&gt; [4,] -5.13673914  6.96311130  -3.225681 21.0495115   0.6363705
-#&gt; [5,] -5.49467066  1.81861650 -11.306790  0.6363705  17.3431752
-#&gt; attr(,"n")
-#&gt; [1] 21</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>NonsingularWishart</span>(<span class='fl'>20</span>, <span class='fu'>diag</span>(<span class='fl'>1</span>,<span class='fl'>5</span>))</div><div class='output co'>#&gt;           [,1]       [,2]      [,3]      [,4]       [,5]
+#&gt; [1,] 21.647018  2.7918198 -6.000800 -2.523869 -7.1136878
+#&gt; [2,]  2.791820 10.7008502 -1.180177  0.390330 -0.1539626
+#&gt; [3,] -6.000800 -1.1801772 19.023804 -2.014090 -3.5254185
+#&gt; [4,] -2.523869  0.3903300 -2.014090 19.005544  4.9197783
+#&gt; [5,] -7.113688 -0.1539626 -3.525418  4.919778 17.4912123
+#&gt; attr(,&quot;df&quot;)
+#&gt; ~20
+#&gt; &lt;environment: namespace:rWishart&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

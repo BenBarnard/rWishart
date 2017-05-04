@@ -1,10 +1,15 @@
 ---
-author: "Ben Barnard and Dean Young"
 title: "rWishart: An R package for random wishart matrices"
-output: pdf_document
+author: "Ben Barnard and Dean Young"
 bibliography: [rWishart.bib]
 biblio-style: apalike
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{rWishart: An R package for random wishart matrices}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
+
 ```{r, include = FALSE}
 library(rWishart)
 ```

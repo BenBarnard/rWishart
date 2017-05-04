@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • rWishart</title>
+<title>Test if Matrix is a Wishart Matrix — wishartTest • rWishart</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -34,7 +34,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -72,55 +72,38 @@
       </header>
 
       <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Function reference</h1>
-      <h4>version&nbsp;0.0.0.9000</h4>
+    <h1>Test if Matrix is a Wishart Matrix</h1>
     </div>
 
-    <div class="contents">
-      <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-      <p class="section-desc"></p>
-
-      
-      <p><a href="rFractionalWishart.html">Random Fractional Wishart Matrix</a></p>
-      <ul>
-        <li><code><a href="rFractionalWishart.html">rFractionalWishart</a></code></li>
-      </ul>
-      
-      <p><a href="rNonsingularWishart.html">Random Nonsingular Wishart Matrix</a></p>
-      <ul>
-        <li><code><a href="rNonsingularWishart.html">rNonsingularWishart</a></code></li>
-      </ul>
-      
-      <p><a href="rPsuedoWishart.html">Random Psuedo Wishart Matrix</a></p>
-      <ul>
-        <li><code><a href="rPsuedoWishart.html">rPsuedoWishart</a></code></li>
-      </ul>
-      
-      <p><a href="rSingularWishart.html">Random Singular Wishart Matrix</a></p>
-      <ul>
-        <li><code><a href="rSingularWishart.html">rSingularWishart</a></code></li>
-      </ul>
-      
-      <p><a href="rWishart.html">Random Wishart Distributed Matrices</a></p>
-      <ul>
-        <li><code><a href="rWishart.html">rWishart</a></code></li>
-      </ul>
-      
-      <p><a href="wishartTest.html">Test if Matrix is a Wishart Matrix</a></p>
-      <ul>
-        <li><code><a href="wishartTest.html">wishartTest</a></code></li>
-      </ul>
     
-    </div>
-  </div>
+    <p>Test if Matrix is a Wishart Matrix</p>
+    
 
+    <pre><span class='fu'>wishartTest</span>(<span class='no'>WishMat</span>, <span class='no'>Sigma</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <dl class="dl-horizontal">
+      <dt>WishMat</dt>
+      <dd>Wishart Matrix</dd>
+      <dt>Sigma</dt>
+      <dd>Covariance matrix</dd>
+    </dl>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>wishartTest</span>(<span class='fu'><a href='rWishart.html'>rWishart</a></span>(<span class='fl'>1</span>, <span class='fl'>5</span>, <span class='fu'>diag</span>(<span class='fl'>1</span>, <span class='fl'>20</span>), <span class='kw'>simplify</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)<span class='kw'>[[</span><span class='fl'>1</span>]], <span class='fu'>diag</span>(<span class='fl'>1</span>, <span class='fl'>20</span>))</div><div class='output co'>#&gt;          [,1]
+#&gt; [1,] 3.180049</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+            
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 

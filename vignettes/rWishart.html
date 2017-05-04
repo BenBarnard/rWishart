@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Ben Barnard and Dean Young" />
+
+
+<title>rWishart: An R package for random wishart matrices</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">rWishart: An R package for random wishart matrices</h1>
+<h4 class="author"><em>Ben Barnard and Dean Young</em></h4>
+
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+</div>
+<div id="random-wishart-matrices" class="section level1">
+<h1>Random Wishart Matrices</h1>
+<p>Let <span class="math inline">\(\textbf{X}_{n \times p}\)</span> be a <span class="math inline">\(n\)</span> sample by <span class="math inline">\(p\)</span> dimensional data matrix distributed <span class="math inline">\(MVN(\mu, \Sigma)\)</span>. Let us consider the sample covariance matrix <span class="math display">\[\textbf{S}_i = \frac{1}{n_i - 1}\textbf{X}_i^T \left( \textbf{I}_{n_i} - \frac{1}{n_i} \textbf{J}_{n_i} \right) \textbf{X}_i, \quad i = 1, \ldots, k\]</span> where <span class="math inline">\(\textbf{J}_{n_i}\)</span> is an <span class="math inline">\(n_i \times n_i\)</span> matrix of ones. Then, <span class="math inline">\((n_i - 1) \textbf{S}_i \sim \text{W}\left( \boldsymbol{\Sigma}_i, n_i - 1\right)\)</span>, where <span class="math inline">\(\text{W}\left( \boldsymbol{\Sigma}_i, n_i \right)\)</span> is a Wishart distribution with <span class="math inline">\(n_i\)</span> degrees of freedom and covariance matrix <span class="math inline">\(\boldsymbol{\Sigma}_i\)</span> <span class="citation">(Chaipitak and Chongcharoen 2013; Johnson and Wichern 2007; Fujikoshi, Ulyanov, and Shimizu 2011)</span>.</p>
+<p><span class="citation">Odell and Feiveson (1966)</span> has developed an alorithm to generate <span class="math inline">\((n_i - 1) \textbf{S}_i \sim \text{W}\left( \boldsymbol{\Sigma}_i, n_i - 1 \right)\)</span> where <span class="math inline">\(n_i - 1 \geq p\)</span>. The <span class="citation">Odell and Feiveson (1966)</span> algorithm uses Bartlett’s decomposition. Thus, <span class="math inline">\(\textbf{U} = \textbf{FF}^T \sim \text{W}(n - 1, \textbf{I})\)</span>, where <span class="math display">\[\textbf{F} = 
+\begin{pmatrix} 
+X_1^{1/2} &amp; 0 &amp; \ldots &amp; 0 \\
+Y_{2, \ 1} &amp; X_2^{1/2} &amp; \ldots &amp; 0 \\
+\vdots &amp; \ddots &amp; \ddots &amp; \vdots \\
+Y_{p, \ 1} &amp; \ldots &amp; Y_{p, \ p - 1} &amp; X_p^{1/2}
+\end{pmatrix}.\]</span></p>
+<p>With <span class="math inline">\(X_i \sim \chi^2(n-i), \ i = 1, \ldots, p\)</span>, and <span class="math inline">\(Y_{i, j} \overset{iid}{\sim} N(0,1)\)</span>. Let <span class="math inline">\(\boldsymbol{\Sigma} = \textbf{CC}^T\)</span> where <span class="math inline">\(\textbf{C}\)</span> is the lower triangle matrix from the Cholesky decomposition. Then, <span class="math inline">\(\textbf{CUC}^T \sim \text{W}\left( \boldsymbol{\Sigma}_i, n_i - 1 \right).\)</span></p>
+<div id="psuedo-wishart-matrices" class="section level2">
+<h2>Psuedo Wishart Matrices</h2>
+<p>In this section we discuss psuedo wishart matrices. <span class="citation">M. S. Srivastava (2003)</span>, <span class="citation">Kubokawa and Srivastava (2008)</span>, and <span class="citation">Uhlig (1994)</span> defined the singular wishart distribution as a <span class="math inline">\(W(n - 1, \boldsymbol{\Sigma})\)</span> where <span class="math inline">\(n \leq p\)</span>, <span class="math inline">\(p\)</span> being the dimension. Since we will define the singular wishart as something else in the next section we will call this the psuedo wishart distribution like <span class="citation">Diaz-Garcia, Jaimez, and Mardia (1997)</span>. We cannot generate our psuedo wishart matrices by <span class="citation">Odell and Feiveson (1966)</span>. Let <span class="math inline">\(X_{n, \ p} \sim MVN(\textbf{0}, \textbf{I}_p)\)</span> where the sample size <span class="math inline">\(n\)</span> is less than our dimension <span class="math inline">\(p\)</span>. Then, <span class="math inline">\(\textbf{W} = \textbf{XX}^T \sim W(n, \textbf{I})\)</span> is psuedo wishart. Next, let <span class="math inline">\(\boldsymbol{\Sigma}\)</span> be positive definite then <span class="math inline">\(\boldsymbol{\Sigma} = \textbf{CC}^T\)</span> where <span class="math inline">\(\textbf{C}\)</span> is the lower triangle matrix from the Cholesky decomposition. Then, <span class="math inline">\(\textbf{CWC}^T \sim \text{W}\left(n, \boldsymbol{\Sigma} \right)\)</span> is psuedo wishart.</p>
+</div>
+<div id="singular-wishart-matrices" class="section level2">
+<h2>Singular Wishart Matrices</h2>
+<p>In this section we discuss singular wishart matrices. We define the singular wishart matrix <span class="math inline">\(W \sim \text{W}(n, \boldsymbol{\Sigma})\)</span> where <span class="math inline">\(\boldsymbol{\Sigma}\)</span> is positive semidefinite where <span class="math inline">\(rk(\boldsymbol{\Sigma}) &lt; p\)</span>. The solution to the Cholesky decomposition is no longer unique and most software will give errors or interesting results. Let <span class="math inline">\(X_{n, \ p} \sim MVN(\textbf{0}, \textbf{I}_p)\)</span>. Then, <span class="math inline">\(\textbf{W} = \textbf{XX}^T \sim W(n, \textbf{I})\)</span> where <span class="math inline">\(W(n, \textbf{I})\)</span> can be wishart or psuedo wishart. Next, let <span class="math inline">\(\boldsymbol{\Sigma}\)</span> be positive semidefinite then <span class="math inline">\(\boldsymbol{\Sigma} = \textbf{UDU}^T\)</span> is the singular value decomposition. Then, <span class="math inline">\(\textbf{UD}^{1/2}\textbf{W}(\textbf{UD}^{1/2})^T \sim \text{W}\left(n, \boldsymbol{\Sigma} \right)\)</span> is singular wishart.</p>
+</div>
+<div id="fractional-wishart-matrices" class="section level2">
+<h2>Fractional Wishart Matrices</h2>
+<p>In this section we discuss fractional wishart matrices. We define the fractional wishart matrix <span class="math inline">\(W \sim \text{W}(df, \boldsymbol{\Sigma})\)</span> where <span class="math inline">\(\boldsymbol{\Sigma}\)</span> is positive definite. Similar to <span class="citation">Odell and Feiveson (1966)</span> we define <span class="math inline">\(\textbf{U} = \textbf{FF}^T \sim \text{W}(n - 1, \textbf{I})\)</span>, where <span class="math display">\[\textbf{F} = 
+\begin{pmatrix} 
+X_1^{1/2} &amp; 0 &amp; \ldots &amp; 0 \\
+Y_{2, \ 1} &amp; X_2^{1/2} &amp; \ldots &amp; 0 \\
+\vdots &amp; \ddots &amp; \ddots &amp; \vdots \\
+Y_{p, \ 1} &amp; \ldots &amp; Y_{p, \ p - 1} &amp; X_p^{1/2}
+\end{pmatrix}.\]</span> With <span class="math inline">\(X_i \sim \text{Gamma}(df - i + 1, \ 1/2), \ i = 1, \ldots, p\)</span>, and <span class="math inline">\(Y_{i, j} \overset{iid}{\sim} N(0,1)\)</span>. Let <span class="math inline">\(\boldsymbol{\Sigma} = \textbf{CC}^T\)</span> where <span class="math inline">\(\textbf{C}\)</span> is the lower triangle matrix from the Cholesky decomposition. Then, <span class="math inline">\(\textbf{CUC}^T \sim \text{W}\left(df, \boldsymbol{\Sigma}_i \right).\)</span></p>
+</div>
+</div>
+<div id="overview-and-use-of-the-package" class="section level1">
+<h1>Overview and Use of the Package</h1>
+<p>In this section we discuss the how users will use the rWishart package. Most users will use one function, . The  function is just a wrapper for four other functions, , , , and . The  function decides which of these four functions are needed to create the appropriate random wishart matrix. The  function is just a wrapper for the base  function in R.</p>
+<p>Under the hood the wishart functions use the base  function and the function calls , and  are passed to . The base functions and the replications in the future will be implemented in a lower level programming language. Currently the base  function uses a lower level language so we do slow down the  function by assigning over the base function. We assign over the base function to increse functionality of .</p>
+<div id="covariance-matrix-class" class="section level2">
+<h2>Covariance Matrix Class</h2>
+<p>In this section we discuss a new class of matrix object in R. The primary purpose for this object is not really apparent in the rWishart package and we won’t see some of the true advantages to the covariance class object till the covEst package release. When a user calls the rWishart function,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">S &lt;-<span class="st"> </span><span class="kw">rWishart</span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">df =</span> <span class="dv">2</span>, <span class="dt">Sigma =</span> <span class="kw">diag</span>(<span class="dv">1</span>, <span class="dv">10</span>), 
+              <span class="dt">covariance =</span> <span class="ot">TRUE</span>, <span class="dt">simplify =</span> <span class="ot">FALSE</span>)[[<span class="dv">1</span>]]</code></pre></div>
+<p>they are given the option to generate sample covariance matrices, <span class="math inline">\(S\)</span>, where <span class="math display">\[df * S \sim W(df, \boldsymbol{\Sigma}).\]</span> In the covariance class matrix we store a new attribute to the matrix object. We store the degrees of freedom as a formula object. The degrees of freedom can be pulled from the covariance matrix class object by using</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">degreesfreedom &lt;-<span class="st"> </span><span class="kw">attributes</span>(S)$df</code></pre></div>
+<p>and we can evaluate the formula by</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lazyeval::<span class="kw">f_eval</span>(degreesfreedom)</code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>from the lazyeval package. Having a covariance class matrix object allows us to create covarince specific methods that can differentiate between needing high-dimensional or normal methods. The covarinance class object also allows us not to confuse multivariate data matrices with our random sample covariance matrices.</p>
+</div>
+<div id="testing-wishart-matrices" class="section level2">
+<h2>Testing Wishart Matrices</h2>
+</div>
+<div id="simulation-study" class="section level2 unnumbered">
+<h2>Simulation Study</h2>
+<div id="refs" class="references">
+<div id="ref-chaipitak_test_2013">
+<p>Chaipitak, Saowapha, and Samruam Chongcharoen. 2013. “A Test for Testing the Equality of Two Covariance Matrices for High-Dimensional Data.” <em>Journal of Applied Sciences</em> 13 (2): 270–77.</p>
+</div>
+<div id="ref-diaz-garcia_wishart_1997">
+<p>Diaz-Garcia, Jose A, Ramon Gutierrez Jaimez, and Kanti V Mardia. 1997. “Wishart and Pseudo-Wishart Distributions and Some Applications to Shape Theory.” <em>Journal of Multivariate Analysis</em> 63 (1): 73–87. doi:<a href="https://doi.org/10.1006/jmva.1997.1689">10.1006/jmva.1997.1689</a>.</p>
+</div>
+<div id="ref-fujikoshi_multivariate_2011">
+<p>Fujikoshi, Yasunori, Vladimir V. Ulyanov, and Ryoichi Shimizu. 2011. <em>Multivariate Statistics: High-Dimensional and Large-Sample Approximations</em>. John Wiley &amp; Sons.</p>
+</div>
+<div id="ref-johnson_applied_2007">
+<p>Johnson, Richard Arnold, and Dean W. Wichern. 2007. <em>Applied Multivariate Statistical Analysis</em>. Pearson Prentice Hall.</p>
+</div>
+<div id="ref-kubokawa_estimation_2008">
+<p>Kubokawa, Tatsuya, and Muni S. Srivastava. 2008. “Estimation of the Precision Matrix of a Singular Wishart Distribution and Its Application in High-Dimensional Data.” <em>Journal of Multivariate Analysis</em> 99 (9): 1906–28. doi:<a href="https://doi.org/10.1016/j.jmva.2008.01.016">10.1016/j.jmva.2008.01.016</a>.</p>
+</div>
+<div id="ref-odell_numerical_1966">
+<p>Odell, P. L., and A. H. Feiveson. 1966. “A Numerical Procedure to Generate a Sample Covariance Matrix.” <em>Journal of the American Statistical Association</em> 61 (313): 199–203. doi:<a href="https://doi.org/10.2307/2283054">10.2307/2283054</a>.</p>
+</div>
+<div id="ref-srivastava_singular_2003">
+<p>Srivastava, M. S. 2003. “Singular Wishart and Multivariate Beta Distributions.” <em>The Annals of Statistics</em> 31 (5): 1537–60. <a href="http://www.jstor.org/stable/3448387" class="uri">http://www.jstor.org/stable/3448387</a>.</p>
+</div>
+<div id="ref-uhlig_singular_1994">
+<p>Uhlig, Harald. 1994. “On Singular Wishart and Singular Multivariate Beta Distributions.” <em>The Annals of Statistics</em> 22 (1): 395–405. <a href="http://www.jstor.org/stable/2242460" class="uri">http://www.jstor.org/stable/2242460</a>.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
