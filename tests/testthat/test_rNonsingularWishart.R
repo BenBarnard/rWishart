@@ -6,14 +6,14 @@ test_that("rNonsingularWishart produces Wishart Matrix", {
       mean(
         replicate(1000, 
                   wishartTest(
-                    rNonsingularWishart(1, 50, 
-                                     diag(1, 20))[,,1], 
-                    diag(1, 20)
+                    rNonsingularWishart(1, 5, 
+                                     diag(1, 3))[,,1], 
+                    diag(1, 3)
                   )
         )
       )
     ), 
-    50)
+    5)
 })
 
 test_that("rNonsingularWishart produces Wishart Matrix", {
@@ -22,17 +22,17 @@ test_that("rNonsingularWishart produces Wishart Matrix", {
       mean(
         replicate(1000, 
                   wishartTest(
-                    NonsingularWishart(50, 
-                                    diag(1, 20)), 
-                    diag(1, 20)
+                    NonsingularWishart(5, 
+                                    diag(1, 3)), 
+                    diag(1, 3)
                   )
         )
       )
     ), 
-    50)
+    5)
 })
 
 test_that("rNonsingularWishart produces Wishart Matrix", {
-  expect_true(class(NonsingularWishart(25, diag(1, 20), 
+  expect_true(class(NonsingularWishart(5, diag(1, 3), 
                                     covariance = TRUE))[[1]] == "covariance")
 })
