@@ -6,6 +6,7 @@ Authors@R: c(person("Ben", "Barnard", email = "ben_barnard@outlook.com", role = 
 Maintainer: Ben Barnard <ben_barnard@outlook.com>
 Description: Random Wishart Matrix Generation.
 Imports:
+    Matrix,
     MASS,
     stats,
     lazyeval

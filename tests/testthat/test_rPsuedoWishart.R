@@ -31,3 +31,8 @@ test_that("rPseudoWishart produces Wishart Matrix", {
     ), 
     5)
 })
+
+test_that("rPsuedoWishart produces Wishart Matrix", {
+  expect_true(class(PsuedoWishart(5, diag(1, 20), 
+                                    covariance = TRUE))[[1]] == "covariance")
+})

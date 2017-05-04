@@ -31,3 +31,12 @@ test_that("rFractionalWishart produces Wishart Matrix", {
     ), 
     5)
 })
+
+test_that("rFractionalWishart produces Wishart Matrix", {
+  expect_true(class(FractionalWishart(4.99, diag(1, 3), 
+                                    covariance = TRUE))[[1]] == "covariance")
+})
+
+test_that("rFractionalWishart produces Wishart Matrix", {
+  expect_error(FractionalWishart(4.99, diag(1, 20)))
+})
