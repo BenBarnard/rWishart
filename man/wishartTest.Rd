@@ -4,12 +4,14 @@
 \alias{wishartTest}
 \title{Test if Matrix is a Wishart Matrix}
 \usage{
-wishartTest(WishMat, Sigma)
+wishartTest(WishMat, Sigma, vec = NULL)
 }
 \arguments{
 \item{WishMat}{Wishart Matrix}
 
 \item{Sigma}{Covariance matrix}
+
+\item{vec}{random vector}
 }
 \description{
 Test if Matrix is a Wishart Matrix

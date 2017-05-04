@@ -45,11 +45,20 @@ test_that("rWishart produces Wishart Matrix", {
     5)
 })
 
-rP <- PsuedoWishart(5, diag(1, 20))
+rP <- rbind(cbind(diag(1, 20), 0), c(1, rep(0,20)))
 
 test_that("rSingularWishart produces Wishart Matrix", {
-  expect_silent(wishartTest(
-                    rWishart(1, 5, rP)[,,1],
-                    rP))
+  expect_equal(
+    round(
+      mean(
+        replicate(1000, 
+                  wishartTest(
+                    rWishart(1, 5, rP)[,,1], 
+                    rP
+                  )
+        )
+      )
+    ), 
+    5)
 })
 
