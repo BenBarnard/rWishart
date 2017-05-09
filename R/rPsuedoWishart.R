@@ -1,5 +1,7 @@
 #' Random Psuedo Wishart Matrix
 #'
+#' Generate \code{n} random matrices, distributed according to the Wishart distribution with parameters \code{Sigma} and \code{df}, W_p(Sigma, df).
+#'
 #' @inherit rWishart
 #' @export
 #'

@@ -9,11 +9,12 @@ rFractionalWishart(n, df, Sigma, covariance = FALSE, simplify = "array")
 \arguments{
 \item{n}{integer: the number of replications.}
 
-\item{df}{degrees of freedom}
+\item{df}{numeric parameter, \dQuote{degrees of freedom}.}
 
-\item{Sigma}{Covariance matrix}
+\item{Sigma}{positive definite (\eqn{p\times p}{p * p}) \dQuote{scale}
+    matrix, the matrix parameter of the distribution.}
 
-\item{covariance}{should covariance matrix be generated (X / df)}
+\item{covariance}{logical on whether a covariance matrix should be generated}
 
 \item{simplify}{logical or character string; should the result be
     simplified to a vector, matrix or higher dimensional array if
@@ -25,10 +26,14 @@ rFractionalWishart(n, df, Sigma, covariance = FALSE, simplify = "array")
     of \code{FUN(X[[i]])}.}
 }
 \value{
-list or array of random wishart matrices
+a numeric array of dimension \code{p * p * n}, where each array is a positive semidefinite matrix, a realization of the Wishart distribution W_p(Sigma, df)
 }
 \description{
-Random Fractional Wishart Matrix
+Generate \code{n} random matrices, distributed according to the Wishart distribution with parameters \code{Sigma} and \code{df}, W_p(Sigma, df).
+}
+\details{
+If X_1, ..., X_m is a sample of m independent multivariate Gaussians with mean vector 0, and covariance matrix Sigma, 
+the distribution of M = X'X is W_p(Sigma, m).
 }
 \examples{
 rFractionalWishart(2, 22.5, diag(1, 20))

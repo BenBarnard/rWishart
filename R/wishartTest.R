@@ -1,8 +1,11 @@
 #' Test if Matrix is a Wishart Matrix
+#' 
+#' Given a random Wishart matrix, B, from W_p(Sigma, df) and independent random vector \code{a}, then (a' B a) / (a' Sigma a) 
+#' is chi-squared with df degrees of freedom.
 #'
-#' @param WishMat Wishart Matrix
-#' @param Sigma Covariance matrix
-#' @param vec random vector
+#' @param WishMat random Wishart Matrix from W_p(Sigma, df)
+#' @param Sigma Covariance matrix for W_p(Sigma, df)
+#' @param vec independent random vector
 #'
 #' @export
 #' @importFrom stats rnorm

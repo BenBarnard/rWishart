@@ -1,12 +1,16 @@
 #' Random Wishart Distributed Matrices
 #'
-#' @inheritParams base::replicate
-#' @param df degrees of freedom
-#' @param Sigma Covariance matrix
-#' @param covariance should covariance matrix be generated (X / df)
+#' Generate \code{n} random matrices, distributed according to the Wishart distribution with parameters \code{Sigma} and \code{df}, W_p(Sigma, df).
 #'
-#' @return list or array of random wishart matrices
+#' @inheritParams base::replicate
+#' @inheritParams stats::rWishart
+#' @param covariance logical on whether a covariance matrix should be generated
+#'
+#' @return a numeric array of dimension \code{p * p * n}, where each array is a positive semidefinite matrix, a realization of the Wishart distribution W_p(Sigma, df)
 #' @export
+#' 
+#' @details If X_1, ..., X_m is a sample of m independent multivariate Gaussians with mean vector 0, and covariance matrix Sigma, 
+#' the distribution of M = X'X is W_p(Sigma, m).
 #' 
 #' @importFrom Matrix rankMatrix
 #'
