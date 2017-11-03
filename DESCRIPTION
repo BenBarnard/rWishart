@@ -1,10 +1,17 @@
 Package: rWishart
 Title: Random Wishart Matrix Generation
 Version: 0.1.0
-Authors@R: c(person("Ben", "Barnard", email = "ben_barnard@outlook.com", role = c("aut", "cre")),
-             person("Dean", "Young", role = c("aut")))
+Authors@R: c(person("Ben", "Barnard", 
+                    email = "ben_barnard@outlook.com", 
+                    role = c("aut", "cre")),
+             person("Dean", "Young", 
+                    role = c("aut")))
 Maintainer: Ben Barnard <ben_barnard@outlook.com>
-Description: An expansion of R's base random wishart matrix generation. This package allows the user to generate singular and pseudo wishart matrices. In addition the user can generate wishart matrices with fractional degrees of freedom commonly used in volatility modeling. Users can also use this package to create random covariance matrices.
+Description: An expansion of R's base random wishart matrix generation. This 
+  package allows the user to generate singular and pseudo wishart matrices. 
+  In addition the user can generate wishart matrices with fractional degrees of 
+  freedom commonly used in volatility modeling. Users can also use this package 
+  to create random covariance matrices.
 Depends:
     R (>= 3.4)
 Imports:
