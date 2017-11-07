@@ -15,7 +15,7 @@ SingularWishart(df, Sigma, covariance = FALSE)
 \item{covariance}{logical on whether a covariance matrix should be generated}
 }
 \value{
-a numeric array of dimension \code{p * p * n}, where each array is a positive semidefinite matrix, a realization of the Wishart distribution W_p(Sigma, df)
+A numeric array of dimension \code{p * p * n}, where each array is a positive semidefinite matrix, a realization of the Wishart distribution W_p(Sigma, df)
 }
 \description{
 Singular Wishart Helper Function

@@ -26,7 +26,7 @@ rSingularWishart(n, df, Sigma, covariance = FALSE, simplify = "array")
     of \code{FUN(X[[i]])}.}
 }
 \value{
-a numeric array of dimension \code{p * p * n}, where each array is a positive semidefinite matrix, a realization of the Wishart distribution W_p(Sigma, df)
+A numeric array of dimension \code{p * p * n}, where each array is a positive semidefinite matrix, a realization of the Wishart distribution W_p(Sigma, df)
 }
 \description{
 Generate \code{n} random matrices, distributed according to the Wishart distribution with parameters \code{Sigma} and \code{df}, W_p(Sigma, df).
@@ -37,4 +37,7 @@ the distribution of M = X'X is W_p(Sigma, m).
 }
 \examples{
 rSingularWishart(2, 5, diag(1, 20))
+}
+\references{
+Uhlig, Harald. 1994. “On Singular Wishart and Singular Multivariate Beta Distributions.” The Annals of Statistics 22 (1): 395–405. doi:10.1214/aos/1176325375.
 }

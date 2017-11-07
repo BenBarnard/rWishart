@@ -2,6 +2,8 @@
 #'
 #' Generate \code{n} random matrices, distributed according to the Wishart distribution with parameters \code{Sigma} and \code{df}, W_p(Sigma, df).
 #'
+#' @references Uhlig, Harald. 1994. “On Singular Wishart and Singular Multivariate Beta Distributions.” The Annals of Statistics 22 (1): 395–405. doi:10.1214/aos/1176325375.
+#'
 #' @inherit rWishart
 #' @export
 #'

@@ -6,7 +6,7 @@
 #' @inheritParams stats::rWishart
 #' @param covariance logical on whether a covariance matrix should be generated
 #'
-#' @return a numeric array of dimension \code{p * p * n}, where each array is a positive semidefinite matrix, a realization of the Wishart distribution W_p(Sigma, df)
+#' @return A numeric array of dimension \code{p * p * n}, where each array is a positive semidefinite matrix, a realization of the Wishart distribution W_p(Sigma, df)
 #' @export
 #' 
 #' @details If X_1, ..., X_m is a sample of m independent multivariate Gaussians with mean vector 0, and covariance matrix Sigma, 

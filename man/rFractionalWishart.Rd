@@ -26,7 +26,7 @@ rFractionalWishart(n, df, Sigma, covariance = FALSE, simplify = "array")
     of \code{FUN(X[[i]])}.}
 }
 \value{
-a numeric array of dimension \code{p * p * n}, where each array is a positive semidefinite matrix, a realization of the Wishart distribution W_p(Sigma, df)
+A numeric array of dimension \code{p * p * n}, where each array is a positive semidefinite matrix, a realization of the Wishart distribution W_p(Sigma, df)
 }
 \description{
 Generate \code{n} random matrices, distributed according to the Wishart distribution with parameters \code{Sigma} and \code{df}, W_p(Sigma, df).
@@ -37,4 +37,7 @@ the distribution of M = X'X is W_p(Sigma, m).
 }
 \examples{
 rFractionalWishart(2, 22.5, diag(1, 20))
+}
+\references{
+Adhikari, S. (2008). Wishart random matrices in probabilistic structural mechanics. Journal of engineering mechanics, 134(12), doi:1029-1044.10.1061/(ASCE)0733-9399(2008)134:12(1029).
 }

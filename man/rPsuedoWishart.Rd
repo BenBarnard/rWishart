@@ -26,7 +26,7 @@ rPsuedoWishart(n, df, Sigma, covariance = FALSE, simplify = "array")
     of \code{FUN(X[[i]])}.}
 }
 \value{
-a numeric array of dimension \code{p * p * n}, where each array is a positive semidefinite matrix, a realization of the Wishart distribution W_p(Sigma, df)
+A numeric array of dimension \code{p * p * n}, where each array is a positive semidefinite matrix, a realization of the Wishart distribution W_p(Sigma, df)
 }
 \description{
 Generate \code{n} random matrices, distributed according to the Wishart distribution with parameters \code{Sigma} and \code{df}, W_p(Sigma, df).
@@ -37,4 +37,7 @@ the distribution of M = X'X is W_p(Sigma, m).
 }
 \examples{
 rPsuedoWishart(2, 5, diag(1, 20))
+}
+\references{
+Diaz-Garcia, Jose A, Ramon Gutierrez Jaimez, and Kanti V Mardia. 1997. “Wishart and Pseudo-Wishart Distributions and Some Applications to Shape Theory.” Journal of Multivariate Analysis 63 (1): 73–87. doi:10.1006/jmva.1997.1689.
 }

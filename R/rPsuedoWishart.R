@@ -2,6 +2,8 @@
 #'
 #' Generate \code{n} random matrices, distributed according to the Wishart distribution with parameters \code{Sigma} and \code{df}, W_p(Sigma, df).
 #'
+#' @references Diaz-Garcia, Jose A, Ramon Gutierrez Jaimez, and Kanti V Mardia. 1997. “Wishart and Pseudo-Wishart Distributions and Some Applications to Shape Theory.” Journal of Multivariate Analysis 63 (1): 73–87. doi:10.1006/jmva.1997.1689.
+#'
 #' @inherit rWishart
 #' @export
 #'

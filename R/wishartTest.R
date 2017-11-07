@@ -6,6 +6,8 @@
 #' @param WishMat random Wishart Matrix from W_p(Sigma, df)
 #' @param Sigma Covariance matrix for W_p(Sigma, df)
 #' @param vec independent random vector
+#' 
+#' @return A chi-squared random variable with df degrees of freedom.
 #'
 #' @export
 #' @importFrom stats rnorm
