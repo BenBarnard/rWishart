@@ -1,4 +1,3 @@
-
 # rWishart
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/rWishart)](https://cran.r-project.org/package=rWishart)
