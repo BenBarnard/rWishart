@@ -23,14 +23,17 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -78,29 +81,45 @@
     </div>
 
     
-    <p>Test if Matrix is a Wishart Matrix</p>
+    <p>Given a random Wishart matrix, B, from W_p(Sigma, df) and independent random vector <code>a</code>, then (a' B a) / (a' Sigma a) 
+is chi-squared with df degrees of freedom.</p>
     
 
-    <pre><span class='fu'>wishartTest</span>(<span class='no'>WishMat</span>, <span class='no'>Sigma</span>)</pre>
+    <pre class="usage"><span class='fu'>wishartTest</span>(<span class='no'>WishMat</span>, <span class='no'>Sigma</span>, <span class='kw'>vec</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <dl class="dl-horizontal">
-      <dt>WishMat</dt>
-      <dd>Wishart Matrix</dd>
-      <dt>Sigma</dt>
-      <dd>Covariance matrix</dd>
-    </dl>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>WishMat</th>
+      <td><p>random Wishart Matrix from W_p(Sigma, df)</p></td>
+    </tr>
+    <tr>
+      <th>Sigma</th>
+      <td><p>Covariance matrix for W_p(Sigma, df)</p></td>
+    </tr>
+    <tr>
+      <th>vec</th>
+      <td><p>independent random vector</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A chi-squared random variable with df degrees of freedom.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>wishartTest</span>(<span class='fu'><a href='rWishart.html'>rWishart</a></span>(<span class='fl'>1</span>, <span class='fl'>5</span>, <span class='fu'>diag</span>(<span class='fl'>1</span>, <span class='fl'>20</span>), <span class='kw'>simplify</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)<span class='kw'>[[</span><span class='fl'>1</span>]], <span class='fu'>diag</span>(<span class='fl'>1</span>, <span class='fl'>20</span>))</div><div class='output co'>#&gt;          [,1]
+    <pre class="examples"><div class='input'><span class='fu'>wishartTest</span>(<span class='fu'>rWishart</span>(<span class='fl'>1</span>, <span class='fl'>5</span>, <span class='fu'>diag</span>(<span class='fl'>1</span>, <span class='fl'>20</span>), <span class='kw'>simplify</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)<span class='kw'>[[</span><span class='fl'>1</span>]], <span class='fu'>diag</span>(<span class='fl'>1</span>, <span class='fl'>20</span>))</div><div class='output co'>#&gt;          [,1]
 #&gt; [1,] 3.180049</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#value">Value</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
