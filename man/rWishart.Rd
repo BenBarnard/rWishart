@@ -32,7 +32,13 @@ rWishart(n, df, Sigma, covariance = FALSE, simplify = "array")
 A numeric array of dimension \code{p * p * n}, where each array is a positive semidefinite matrix, a realization of the Wishart distribution W_p(Sigma, df)
 }
 \description{
-An expansion of R's base random wishart matrix generation. This package allows the user to generate singular, <doi:10.1214/aos/1176325375>, and pseudo wishart, <doi:10.1006/jmva.1997.1689>, matrices. In addition the user can generate wishart matrices with fractional degrees of freedom, <doi:1029-1044.10.1061/(ASCE)0733-9399(2008)134:12(1029)>, commonly used in volatility modeling. Users can also use this package to create random covariance matrices.
+An expansion of R's 'stats' random wishart matrix generation. 
+This package allows the user to generate singular, Uhlig and Harald (1994) 
+<doi:10.1214/aos/1176325375>, and pseudo wishart, Diaz-Garcia, et al.(1997) 
+<doi:10.1006/jmva.1997.1689>, matrices. In addition the user can generate 
+wishart matrices with fractional degrees of freedom, Adhikari (2008) 
+<doi:10.1061/(ASCE)0733-9399(2008)134:12(1029)>, commonly used in volatility 
+modeling. Users can also use this package to create random covariance matrices.
 
 Generate \code{n} random matrices, distributed according to the Wishart distribution with parameters \code{Sigma} and \code{df}, W_p(Sigma, df).
 }
