@@ -32,7 +32,7 @@ SingularWishart <- function(df, Sigma, covariance = FALSE){
   u <- singularValueDecomposition$u
   X <- mvrnorm(n = df,
                mu  = rep(0 , ncol(Sigma)),
-               Sigma = u %*% sqd %*% t(u %*% sqd))
+               Sigma = diag(ncol(Sigma)))
   x <- u %*% sqd %*% t(X) %*% X %*% t(u %*% sqd)
   atr <- attributes(x)
   attributes(x) <- c(atr, df = f_unwrap(~ df))
