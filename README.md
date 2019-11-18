@@ -2,8 +2,8 @@
 # rWishart
 
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/rWishart)](https://cran.r-project.org/package=rWishart)
-<http://cranlogs.r-pkg.org/badges/grand-total/rWishart> [![Travis-CI
-Build
+[![](http://cranlogs.r-pkg.org/badges/grand-total/rWishart)](https://cran.rstudio.com/web/packages/rWishart/index.html)
+[![Travis-CI Build
 Status](https://travis-ci.org/BenBarnard/rWishart.svg?branch=master)](https://travis-ci.org/BenBarnard/rWishart)
 [![codecov](https://codecov.io/gh/BenBarnard/rWishart/branch/master/graph/badge.svg)](https://codecov.io/gh/BenBarnard/rWishart)
 
