@@ -8,3 +8,4 @@
 ^README\.html$
 ^\.travis\.yml$
 ^vignettes$
+after.R

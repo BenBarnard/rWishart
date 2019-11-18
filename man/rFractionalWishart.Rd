@@ -4,7 +4,8 @@
 \alias{rFractionalWishart}
 \title{Random Fractional Wishart Matrix}
 \usage{
-rFractionalWishart(n, df, Sigma, covariance = FALSE, simplify = "array")
+rFractionalWishart(n, df, Sigma, covariance = FALSE,
+  simplify = "array")
 }
 \arguments{
 \item{n}{integer: the number of replications.}
