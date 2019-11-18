@@ -1,3 +1,7 @@
+---
+output: github_document
+---
+
 # rWishart
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/rWishart)](https://cran.r-project.org/package=rWishart)
@@ -15,7 +19,7 @@ In developing covEst we found it useful to have it play nice with the "tidyverse
 
 You can install the latest development version from github with
 
-```{r}
+```{r, eval = FALSE}
 if (packageVersion("devtools") < 1.6) {
   install.packages("devtools")
 }
@@ -28,7 +32,7 @@ If you encounter a clear bug, please file a minimal reproducible example on gith
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example}
+```{r example, eval = FALSE}
 library(rWishart)
 
 rWishart(n = 1, df = 2, Sigma = diag(1, 10), covariance = TRUE)
