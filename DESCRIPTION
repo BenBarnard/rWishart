@@ -2,11 +2,11 @@ Package: rWishart
 Title: Random Wishart Matrix Generation
 Version: 0.1.2
 Authors@R: c(person("Ben", "Barnard", 
-                    email = "ben_barnard@outlook.com", 
+                    email = "benbarnard87@gmail.com", 
                     role = c("aut", "cre")),
              person("Dean", "Young", 
                     role = c("aut")))
-Maintainer: Ben Barnard <ben_barnard@outlook.com>
+Maintainer: Ben Barnard <benbarnard87@gmail.com>
 Description: An expansion of R's 'stats' random wishart matrix generation. 
   This package allows the user to generate singular, Uhlig and Harald (1994) 
   <doi:10.1214/aos/1176325375>, and pseudo wishart, Diaz-Garcia, et al.(1997) 
