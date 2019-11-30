@@ -20,7 +20,7 @@ matrix:
         on:
           branch: master
         local_dir: docs
-        target_branch: master-web
+        target_branch: gh-pages
     - r: release
       os: osx
   exclude:
@@ -28,6 +28,6 @@ matrix:
       os: osx
 notifications:
   email:
-    - ben_barnard@outlook.com
+    - benbarnard87@gmail.com
   on_success: always
   on_failure: always
