@@ -29,7 +29,7 @@ PsuedoWishart <- function(df, Sigma, covariance = FALSE){
   X <- mvrnorm(n = df,
                mu  = rep(0 , ncol(Sigma)),
                Sigma = Sigma)
-  x <- cholesky %*% t(X) %*% X %*% t(cholesky)
+  x <-  t(X) %*% X 
   atr <- attributes(x)
   attributes(x) <- c(atr, df = f_unwrap(~ df))
   if(covariance == TRUE){
