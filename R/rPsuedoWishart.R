@@ -25,7 +25,6 @@ rPsuedoWishart <- function(n, df, Sigma, covariance = FALSE, simplify = "array")
 #' @examples PsuedoWishart(5, diag(1, 20))
 PsuedoWishart <- function(df, Sigma, covariance = FALSE){
   df <- df
-  cholesky <- chol(Sigma)
   X <- mvrnorm(n = df,
                mu  = rep(0 , ncol(Sigma)),
                Sigma = Sigma)
